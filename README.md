@@ -6,7 +6,8 @@
 - [A pure Swift QOI encoder / decoder package without BinaryParsing.](https://qoiformat.org/)
 - [一個使用純Swift寫的QOI壓縮 / 解縮壓工具包 (沒有使用BinaryParsing)。](https://blog.gslin.org/archives/2021/11/27/10433/qoi-圖片無損壓縮演算法/)
 
-![](https://github.com/user-attachments/assets/01470ed9-c918-4a84-865a-7d36af2f7137)
+![](https://github.com/user-attachments/assets/bc6f2305-55fb-41e0-bedd-782063a98b9c)
+
 > [Johnathan Higdon (CC BY-NC 4.0) ](https://freepngimg.com/png/114573-mario-photos-download-free-image)
 
 ### [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
