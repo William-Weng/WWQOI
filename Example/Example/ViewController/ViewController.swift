@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Example
 //
-//  Created by William.Weng on 2025/10/29.
+//  Created by William.Weng on 2026/4/11.
 //
 
 import UIKit
@@ -34,16 +34,17 @@ final class ViewController: UIViewController {
             
             let info = try WWQOI.shared.decode(data: qoiData)
             let cgImge = try info.cgImage()
-            
+            let rawSize = Int64(info.pixels.count)._bytes(units: [.useMB])
+            let pngSize = Int64(pngData.count)._bytes(units: [.useMB])
+            let qoiSize = Int64(qoiData.count)._bytes(units: [.useMB])
+
             imageView.image = UIImage(cgImage: cgImge)
             
-            rawLabel.text = "[raw] \(info.pixels.count) bytes (100%)"
-            pngLabel.text = "[png] \(pngData.count) bytes (\(pngData.count * 100 / info.pixels.count)%)"
-            qoiLabel.text = "[qoi] \(qoiData.count) bytes (\(qoiData.count * 100 / info.pixels.count)%)"
-            
+            rawLabel.text = "[raw] \(rawSize) (100%)"
+            pngLabel.text = "[png] \(pngSize) (\(pngData.count * 100 / info.pixels.count)%)"
+            qoiLabel.text = "[qoi] \(qoiSize) (\(qoiData.count * 100 / info.pixels.count)%)"
         } catch {
             print(error)
         }
     }
 }
-

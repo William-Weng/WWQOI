@@ -6,8 +6,8 @@
 - [A pure Swift QOI encoder / decoder package without BinaryParsing.](https://qoiformat.org/)
 - [一個使用純Swift寫的QOI壓縮 / 解縮壓工具包 (沒有使用BinaryParsing)。](https://blog.gslin.org/archives/2021/11/27/10433/qoi-圖片無損壓縮演算法/)
 
-### [View](https://freepngimg.com/png/114573-mario-photos-download-free-image)
-![](https://github.com/user-attachments/assets/19f37403-764b-40bd-ab4f-9cca0f340e81)
+![](https://github.com/user-attachments/assets/01470ed9-c918-4a84-865a-7d36af2f7137)
+> [Johnathan Higdon (CC BY-NC 4.0) ](https://freepngimg.com/png/114573-mario-photos-download-free-image)
 
 ### [Installation with Swift Package Manager](https://medium.com/彼得潘的-swift-ios-app-開發問題解答集/使用-spm-安裝第三方套件-xcode-11-新功能-2c4ffcf85b4b)
 ```bash
@@ -54,12 +54,17 @@ final class ViewController: UIViewController {
             let info = try WWQOI.shared.decode(data: qoiData)
             let cgImge = try info.cgImage()
             
+            let info = try WWQOI.shared.decode(data: qoiData)
+            let cgImge = try info.cgImage()
+            let rawSize = Int64(info.pixels.count)._bytes(units: [.useMB])
+            let pngSize = Int64(pngData.count)._bytes(units: [.useMB])
+            let qoiSize = Int64(qoiData.count)._bytes(units: [.useMB])
+
             imageView.image = UIImage(cgImage: cgImge)
             
-            rawLabel.text = "[raw] \(info.pixels.count) bytes (100%)"
-            pngLabel.text = "[png] \(pngData.count) bytes (\(pngData.count * 100 / info.pixels.count)%)"
-            qoiLabel.text = "[qoi] \(qoiData.count) bytes (\(qoiData.count * 100 / info.pixels.count)%)"
-            
+            rawLabel.text = "[raw] \(rawSize) (100%)"
+            pngLabel.text = "[png] \(pngSize) (\(pngData.count * 100 / info.pixels.count)%)"
+            qoiLabel.text = "[qoi] \(qoiSize) (\(qoiData.count * 100 / info.pixels.count)%)"
         } catch {
             print(error)
         }
