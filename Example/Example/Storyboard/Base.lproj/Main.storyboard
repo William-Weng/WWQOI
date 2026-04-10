@@ -62,7 +62,7 @@
                     <connections>
                         <outlet property="imageView" destination="gJx-CK-hLA" id="PeS-EQ-OLf"/>
                         <outlet property="pngLabel" destination="rSm-iE-msq" id="dSt-og-7Uj"/>
-                        <outlet property="qoiImage" destination="VzO-Pw-gko" id="M8J-OR-oVs"/>
+                        <outlet property="qoiLabel" destination="VzO-Pw-gko" id="RUg-qh-wac"/>
                         <outlet property="rawLabel" destination="ddH-hC-aL6" id="LZq-5q-XeH"/>
                     </connections>
                 </viewController>

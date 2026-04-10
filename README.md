@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var rawLabel: UILabel!
     @IBOutlet weak var pngLabel: UILabel!
-    @IBOutlet weak var qoiImage: UILabel!
+    @IBOutlet weak var qoiLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ final class ViewController: UIViewController {
             
             rawLabel.text = "[raw] \(info.pixels.count) bytes (100%)"
             pngLabel.text = "[png] \(pngData.count) bytes (\(pngData.count * 100 / info.pixels.count)%)"
-            qoiImage.text = "[qoi] \(qoiData.count) bytes (\(qoiData.count * 100 / info.pixels.count)%)"
+            qoiLabel.text = "[qoi] \(qoiData.count) bytes (\(qoiData.count * 100 / info.pixels.count)%)"
             
         } catch {
             print(error)
