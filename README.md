@@ -4,7 +4,7 @@
 
 ### [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
 - [A pure Swift QOI (Quite OK Image) encoder / decoder package without BinaryParsing.](https://qoiformat.org/)
-- [一個使用純Swift寫的QOI (Quite OK Image) 壓縮 / 解縮壓工具包 (沒有使用BinaryParsing)。](https://blog.gslin.org/archives/2021/11/27/10433/qoi-圖片無損壓縮演算法/)
+- [一個使用純Swift寫的QOI (Quite OK Image) 壓縮 / 解壓縮工具包 (沒有使用BinaryParsing)。](https://blog.gslin.org/archives/2021/11/27/10433/qoi-圖片無損壓縮演算法/)
 
 ![](https://github.com/user-attachments/assets/bc6f2305-55fb-41e0-bedd-782063a98b9c)
 
