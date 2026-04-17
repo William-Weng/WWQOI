@@ -1,8 +1,8 @@
-# [WWQOI](https://qoiformat.org/qoi-specification.pdf)
+# [WWQOI](https://swiftpackageindex.com/William-Weng)
 
 [![Swift-5.7](https://img.shields.io/badge/Swift-5.7-orange.svg?style=flat)](https://developer.apple.com/swift/) [![iOS-16.0](https://img.shields.io/badge/iOS-16.0-pink.svg?style=flat)](https://developer.apple.com/swift/) ![TAG](https://img.shields.io/github/v/tag/William-Weng/WWQOI) [![Swift Package Manager-SUCCESS](https://img.shields.io/badge/Swift_Package_Manager-SUCCESS-blue.svg?style=flat)](https://developer.apple.com/swift/) [![LICENSE](https://img.shields.io/badge/LICENSE-MIT-yellow.svg?style=flat)](https://developer.apple.com/swift/)
 
-### [Introduction - 簡介](https://swiftpackageindex.com/William-Weng)
+### [Introduction - 簡介](https://qoiformat.org/qoi-specification.pdf)
 - [A pure Swift QOI (Quite OK Image) encoder / decoder package without BinaryParsing.](https://qoiformat.org/)
 - [一個使用純Swift寫的QOI (Quite OK Image) 壓縮 / 解壓縮工具包 (沒有使用BinaryParsing)。](https://blog.gslin.org/archives/2021/11/27/10433/qoi-圖片無損壓縮演算法/)
 
