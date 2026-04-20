@@ -380,7 +380,7 @@
 			repositoryURL = "https://github.com/William-Weng/WWQOI";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

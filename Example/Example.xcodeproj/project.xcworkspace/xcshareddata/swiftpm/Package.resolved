@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/William-Weng/WWQOI",
       "state" : {
-        "revision" : "623da4dd9b6684422cb38d0cce9fdaddc06ceb20",
-        "version" : "1.0.0"
+        "revision" : "efde5b777cfd9c69d111f58fc5c040131a5f80c6",
+        "version" : "1.0.1"
       }
     }
   ],
