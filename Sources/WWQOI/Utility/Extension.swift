@@ -8,18 +8,6 @@
 import Foundation
 import CoreGraphics
 
-// MARK: - Collection
-extension Collection where Element == Data.Element, Index == Int {
-    
-    /// 安全讀取Data
-    /// - Parameter cursor: Int
-    /// - Returns: UInt8
-    func readByte(at cursor: Int) throws -> UInt8 {
-        guard (cursor < count) else { throw WWQOI.DecodeError.truncatedData }
-        return self[cursor]
-    }
-}
-
 // MARK: - UInt8
 extension UInt8 {
     

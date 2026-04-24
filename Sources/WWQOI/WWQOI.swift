@@ -8,6 +8,7 @@
 import Foundation
 import CoreGraphics
 
+// MARK: - Quite-OK-Image
 public class WWQOI: Sendable {
     
     public static let shared: WWQOI = .init()

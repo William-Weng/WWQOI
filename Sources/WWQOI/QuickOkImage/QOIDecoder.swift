@@ -1,4 +1,4 @@
- //
+//
 //  QOIDecoder.swift
 //  WWQOI
 //
@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WWByteReader
 
 // MARK: - QOI解碼工具 (解壓縮)
 extension WWQOI {
@@ -32,13 +33,11 @@ extension WWQOI.Decoder {
         
         guard let channels = WWQOI.Channels(rawValue: header.channels) else { throw WWQOI.DecodeError.unsupportedChannels }
         
-        var bytes = Array(data)
-        var cursor = WWQOI.Constant.headerSize
-        
         let outputChannels = forceChannels ?? channels
         let pixelCount = Int(header.width * header.height)
         let outputStride = Int(outputChannels.rawValue)
         
+        var reader = WWByteReader(data: data, offset: WWQOI.Constant.headerSize)
         var index = Array(repeating: WWQOI.Pixel.new, count: 64)
         var previous = WWQOI.Pixel.start
         var run = 0
@@ -62,17 +61,16 @@ extension WWQOI.Decoder {
             
             if (run > 0) { run -= 1; continue }
             
-            let byte1 = try bytes.readByte(at: cursor)
+            let byte1 = try reader.readUIntValue() as UInt8
             let byte1Code = try WWQOI.OperationCode.find(by: byte1)
-            cursor += 1
             
             switch byte1Code {
             case .index: pixel = index[Int(byte1 & 0x3F)]
             case .run: run = Int(byte1 & 0x3F)
-            case .rgba: cursor = try readRGBAColor(from: cursor, bytes: bytes, pixel: &pixel)
-            case .rgb: cursor = try readRGBColor(from: cursor, bytes: bytes, pixel: &pixel)
+            case .rgba: try readRGBAColor(from: &reader, pixel: &pixel)
+            case .rgb: try readRGBColor(from: &reader, pixel: &pixel)
             case .diff: parseDiffColor(from: byte1, previous: previous, pixel: &pixel)
-            case .luma: cursor = try parseLuminanceColor(at: cursor, bytes: bytes, byte1: byte1, previous: previous, pixel: &pixel)
+            case .luma: try parseLuminanceColor(from: &reader, byte1: byte1, previous: previous, pixel: &pixel)
             }
         }
         
@@ -85,33 +83,43 @@ private extension WWQOI.Decoder {
     
     /// 讀取RGBA值
     /// - Parameters:
-    ///   - cursor: 指標位置
-    ///   - bytes: 圖片資料
+    ///   - reader: WWByteReader
     ///   - pixel: 顏色像素
-    /// - Returns: Int
-    func readRGBAColor(from cursor: Int, bytes: [Data.Element], pixel: inout WWQOI.Pixel) throws -> Int {
+    func readRGBAColor(from reader: inout WWByteReader, pixel: inout WWQOI.Pixel) throws {
         
-        pixel.red = try bytes.readByte(at: cursor + 0)
-        pixel.green = try bytes.readByte(at: cursor + 1)
-        pixel.blue = try bytes.readByte(at: cursor + 2)
-        pixel.alpha = try bytes.readByte(at: cursor + 3)
-        
-        return cursor + 4
+        pixel.red = try reader.readUIntValue() as UInt8
+        pixel.green = try reader.readUIntValue() as UInt8
+        pixel.blue = try reader.readUIntValue() as UInt8
+        pixel.alpha = try reader.readUIntValue() as UInt8
     }
     
     /// 讀取RGB值
     /// - Parameters:
-    ///   - cursor: 指標位置
-    ///   - bytes: 圖片資料
+    ///   - reader: WWByteReader
     ///   - pixel: 顏色像素
-    /// - Returns: Int
-    func readRGBColor(from cursor: Int, bytes: [Data.Element], pixel: inout WWQOI.Pixel) throws -> Int {
+    func readRGBColor(from reader: inout WWByteReader, pixel: inout WWQOI.Pixel) throws {
         
-        pixel.red = try bytes.readByte(at: cursor + 0)
-        pixel.green = try bytes.readByte(at: cursor + 1)
-        pixel.blue = try bytes.readByte(at: cursor + 2)
+        pixel.red = try reader.readUIntValue() as UInt8
+        pixel.green = try reader.readUIntValue() as UInt8
+        pixel.blue = try reader.readUIntValue() as UInt8
+    }
+    
+    /// 解析亮度感知顏色 (以綠色為主軸)
+    /// - Parameters:
+    ///   - reader: WWByteReader
+    ///   - byte1: 上一次的資料
+    ///   - previous: 上一次的顏色像素資料
+    ///   - pixel: 顏色像素
+    func parseLuminanceColor(from reader: inout WWByteReader, byte1: UInt8, previous: WWQOI.Pixel, pixel: inout WWQOI.Pixel) throws {
         
-        return cursor + 3
+        let byte2 = try reader.readUIntValue() as UInt8
+        let deltaGreen = Int(byte1 & 0x3F) - 32
+        let deltaRed_deltaGreen = Int((byte2 >> 4) & 0x0F) - 8
+        let deltaBlue_deltaGreen = Int(byte2 & 0x0F) - 8
+        
+        pixel.red = previous.red.addWrap(deltaGreen + deltaRed_deltaGreen)
+        pixel.green = previous.green.addWrap(deltaGreen)
+        pixel.blue = previous.blue.addWrap(deltaGreen + deltaBlue_deltaGreen)
     }
     
     /// 解析差異顏色
@@ -128,26 +136,5 @@ private extension WWQOI.Decoder {
         pixel.red = previous.red.addWrap(deltaRed)
         pixel.green = previous.green.addWrap(deltaGreen)
         pixel.blue = previous.blue.addWrap(deltaBlue)
-    }
-    
-    /// 解析亮度感知顏色 (以綠色為主軸)
-    /// - Parameters:
-    ///   - cursor: 指標位置
-    ///   - bytes: 圖片資料
-    ///   - byte1: 差異資料
-    ///   - previous: 上一次的顏色像素資料
-    ///   - pixel: 顏色像素
-    func parseLuminanceColor(at cursor: Int, bytes: [Data.Element], byte1: UInt8, previous: WWQOI.Pixel, pixel: inout WWQOI.Pixel) throws -> Int {
-        
-        let byte2 = try bytes.readByte(at: cursor)
-        let deltaGreen = Int(byte1 & 0x3F) - 32
-        let deltaRed_deltaGreen = Int((byte2 >> 4) & 0x0F) - 8
-        let deltaBlue_deltaGreen = Int(byte2 & 0x0F) - 8
-        
-        pixel.red = previous.red.addWrap(deltaGreen + deltaRed_deltaGreen)
-        pixel.green = previous.green.addWrap(deltaGreen)
-        pixel.blue = previous.blue.addWrap(deltaGreen + deltaBlue_deltaGreen)
-        
-        return cursor + 1
     }
 }

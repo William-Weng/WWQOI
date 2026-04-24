@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		3D3C0B7F2F8936E0007F3A06 /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3C0B7E2F8936E0007F3A06 /* WWQOI */; };
 		3D84F4DB2F89368E00839874 /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 3D84F4DA2F89368E00839874 /* WWQOI */; };
-		3DA2652F2F893F0C006F2801 /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA2652E2F893F0C006F2801 /* WWQOI */; };
 		3DA2E2BB2F87E3BD0068091A /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA2E2BA2F87E3BD0068091A /* WWQOI */; };
+		810D35802F9B592500FE95FA /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 810D357F2F9B592500FE95FA /* WWQOI */; };
+		810D35832F9B5D4E00FE95FA /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 810D35822F9B5D4E00FE95FA /* WWQOI */; };
 		811B36862F87413B006261DB /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 811B36852F87413B006261DB /* WWQOI */; };
 		814F77C82F8749AB0022242D /* WWQOI in Frameworks */ = {isa = PBXBuildFile; productRef = 814F77C72F8749AB0022242D /* WWQOI */; };
 /* End PBXBuildFile section */
@@ -45,7 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DA2652F2F893F0C006F2801 /* WWQOI in Frameworks */,
+				810D35802F9B592500FE95FA /* WWQOI in Frameworks */,
+				810D35832F9B5D4E00FE95FA /* WWQOI in Frameworks */,
 				3D84F4DB2F89368E00839874 /* WWQOI in Frameworks */,
 				3DA2E2BB2F87E3BD0068091A /* WWQOI in Frameworks */,
 				814F77C82F8749AB0022242D /* WWQOI in Frameworks */,
@@ -98,7 +100,8 @@
 				3DA2E2BA2F87E3BD0068091A /* WWQOI */,
 				3D84F4DA2F89368E00839874 /* WWQOI */,
 				3D3C0B7E2F8936E0007F3A06 /* WWQOI */,
-				3DA2652E2F893F0C006F2801 /* WWQOI */,
+				810D357F2F9B592500FE95FA /* WWQOI */,
+				810D35822F9B5D4E00FE95FA /* WWQOI */,
 			);
 			productName = Example;
 			productReference = 817EE1FE2EB1FA050036B57C /* Example.app */;
@@ -129,7 +132,7 @@
 			mainGroup = 817EE1F52EB1FA050036B57C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				3DA2652D2F893F0C006F2801 /* XCRemoteSwiftPackageReference "WWQOI" */,
+				810D35812F9B5D4E00FE95FA /* XCRemoteSwiftPackageReference "WWQOI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 817EE1FF2EB1FA050036B57C /* Products */;
@@ -177,7 +180,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -210,7 +213,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,12 +378,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3DA2652D2F893F0C006F2801 /* XCRemoteSwiftPackageReference "WWQOI" */ = {
+		810D35812F9B5D4E00FE95FA /* XCRemoteSwiftPackageReference "WWQOI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/William-Weng/WWQOI";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -394,13 +397,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = WWQOI;
 		};
-		3DA2652E2F893F0C006F2801 /* WWQOI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3DA2652D2F893F0C006F2801 /* XCRemoteSwiftPackageReference "WWQOI" */;
-			productName = WWQOI;
-		};
 		3DA2E2BA2F87E3BD0068091A /* WWQOI */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = WWQOI;
+		};
+		810D357F2F9B592500FE95FA /* WWQOI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WWQOI;
+		};
+		810D35822F9B5D4E00FE95FA /* WWQOI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 810D35812F9B5D4E00FE95FA /* XCRemoteSwiftPackageReference "WWQOI" */;
 			productName = WWQOI;
 		};
 		811B36852F87413B006261DB /* WWQOI */ = {

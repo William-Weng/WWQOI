@@ -9,8 +9,13 @@ let package = Package(
     products: [
         .library(name: "WWQOI", targets: ["WWQOI"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/William-Weng/WWByteReader", .upToNextMinor(from: "1.0.2")),
+    ],
     targets: [
-        .target(name: "WWQOI"),
+        .target(name: "WWQOI", dependencies: [
+            .product(name: "WWByteReader", package: "WWByteReader"),
+        ]),
     ],
     swiftLanguageVersions: [
         .v5
